@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Year Study Hub</title>
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #64748b;
+      --bg: #f3f7fb;
+      --paper: #ffffff;
+      --line: #d8e2ee;
+      --navy: #12304a;
+      --blue: #2563eb;
+      --cyan: #0ea5b7;
+      --green: #2f7d4e;
+      --gold: #d99a22;
+      --rose: #c7566a;
+      --shadow: 0 18px 48px rgba(16, 35, 51, 0.14);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      min-height: 72vh;
+      color: #ffffff;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(8, 20, 33, 0.20), rgba(8, 20, 33, 0.88)),
+        url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1800&q=80") center / cover;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      padding: 34px 0 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #74d2e7;
+      box-shadow: 0 0 0 5px rgba(116, 210, 231, 0.22);
+    }
+
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 6rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .hero p:last-child {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: #edf6ff;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .site-nav .wrap {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 900;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 800;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--navy);
+      background: #eef5ff;
+      outline: none;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(280px, 1.15fr);
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--blue);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .metric {
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--paper);
+      box-shadow: 0 10px 28px rgba(16, 35, 51, 0.07);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--navy);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .subject-card {
+      position: relative;
+      min-height: 220px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 12px 34px rgba(16, 35, 51, 0.08);
+      cursor: pointer;
+      overflow: hidden;
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .subject-card:hover,
+    .subject-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: rgba(37, 99, 235, 0.45);
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+
+    .subject-card::after {
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -46px;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--accent) 17%, transparent);
+    }
+
+    .subject-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 18px;
+      border-radius: var(--radius);
+      color: #ffffff;
+      background: var(--accent);
+      font-weight: 900;
+    }
+
+    .subject-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.12rem;
+      line-height: 1.22;
+    }
+
+    .subject-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .pill.empty {
+      background: #f3f4f6;
+      color: #7b8794;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 310px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .subject-list {
+      position: sticky;
+      top: 84px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .subject-link {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--navy);
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 850;
+    }
+
+    .subject-link.active {
+      color: #ffffff;
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .detail {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .detail-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--detail), #102943);
+    }
+
+    .detail-copy {
+      padding: clamp(24px, 4vw, 44px);
+    }
+
+    .detail-copy h3 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.05;
+    }
+
+    .detail-copy p {
+      max-width: 660px;
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .detail-art {
+      min-height: 260px;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.38)),
+        var(--image) center / cover;
+    }
+
+    .tabbar {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #f7fafe;
+    }
+
+    .tabbar button {
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .tabbar button.active {
+      color: var(--navy);
+      border-color: var(--line);
+      background: var(--paper);
+    }
+
+    .panel {
+      display: none;
+      padding: clamp(18px, 3vw, 34px);
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .topic {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+    }
+
+    .topic h4 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .topic ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .topic li {
+      margin-bottom: 6px;
+    }
+
+    .lecture-box {
+      display: grid;
+      gap: 16px;
+    }
+
+    .lecture-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .lecture-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .lecture-card {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+    }
+
+    .lecture-card h4 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .lecture-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .primary-action {
+      color: #ffffff;
+      background: var(--blue);
+    }
+
+    .secondary-action {
+      color: var(--navy);
+      background: #eef5ff;
+    }
+
+    .lecture-frame {
+      width: 100%;
+      height: 560px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #ffffff;
+    }
+
+    .empty-state {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+      border: 1px dashed #b8c6d6;
+      border-radius: var(--radius);
+      background: #f8fafc;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 1.25rem;
+    }
+
+    .full-syllabus {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .full-syllabus table {
+      width: 100%;
+      min-width: 1100px;
+      border-collapse: collapse;
+    }
+
+    .full-syllabus th,
+    .full-syllabus td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .full-syllabus th {
+      color: #ffffff;
+      background: var(--navy);
+    }
+
+    .full-syllabus td:first-child {
+      width: 260px;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .footer {
+      padding: 30px 0;
+      color: #dbeafe;
+      background: var(--navy);
+    }
+
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 980px) {
+      .section-head,
+      .workspace,
+      .detail-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard,
+      .subject-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .subject-list {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .detail-art {
+        min-height: 220px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-nav .wrap {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .dashboard,
+      .subject-grid,
+      .subject-list,
+      .topic-grid,
+      .lecture-list {
+        grid-template-columns: 1fr;
+      }
+
+      .lecture-frame {
+        height: 420px;
+      }
+
+      .footer .wrap {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">First Year Study Hub</p>
+      <h1>Your full semester, organized in one place</h1>
+      <p>Open any subject from the home page, review its syllabus, and add lecture notes over time. Basic Biochemistry, Botany, Bioorganic Chemistry, and Molecular Biology already include starter lecture pages.</p>
+    </div>
+  </header>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap">
+      <div class="brand">First Semester</div>
+      <div class="nav-links">
+        <a href="#subjects">Subjects</a>
+        <a href="#workspace">Study Desk</a>
+        <a href="#full-syllabus">Full Syllabus</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Dashboard</p>
+            <h2>A cleaner home for every subject.</h2>
+          </div>
+          <p class="lead">The old wide table is still here, but the main experience is now easier: choose a subject, switch between syllabus and lecture, and fill the empty lecture areas later.</p>
+        </div>
+
+        <div class="dashboard" aria-label="Semester summary">
+          <div class="metric">
+            <strong>8</strong>
+            <span>subjects</span>
+          </div>
+          <div class="metric">
+            <strong>16</strong>
+            <span>syllabus and lecture sections</span>
+          </div>
+          <div class="metric">
+            <strong>4</strong>
+            <span>starter lecture pages</span>
+          </div>
+          <div class="metric">
+            <strong>1</strong>
+            <span>main home page</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subjects">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Subjects</p>
+            <h2>Open your subject shelf.</h2>
+          </div>
+          <p class="lead">Each card takes you to the study desk. Syllabus is already filled from the third file. Lecture areas are ready, with four linked pages already connected.</p>
+        </div>
+        <div class="subject-grid" id="subjectGrid"></div>
+      </div>
+    </section>
+
+    <section id="workspace">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Study Desk</p>
+            <h2 id="deskTitle">Basic Biochemistry-I</h2>
+          </div>
+          <p class="lead" id="deskIntro">Switch subjects from the left, then use the tabs to move between syllabus and lecture.</p>
+        </div>
+
+        <div class="workspace">
+          <div class="subject-list" id="subjectList" aria-label="Choose subject"></div>
+          <article class="detail" id="detailCard"></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="full-syllabus">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Full view</p>
+            <h2>Complete first semester syllabus.</h2>
+          </div>
+          <p class="lead">This table is rebuilt from your syllabus file in a more readable row layout. Empty lecture notes are intentionally left blank for later writing.</p>
+        </div>
+
+        <div class="full-syllabus">
+          <table>
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Syllabus topics</th>
+                <th>Lecture status</th>
+              </tr>
+            </thead>
+            <tbody id="syllabusTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>First Year Study Hub</strong></p>
+      <p>Built from your first semester syllabus.</p>
+    </div>
+  </footer>
+
+  <script>
+    const subjects = [
+      {
+        id: "basic-biochemistry",
+        short: "BB",
+        name: "Basic Biochemistry-I",
+        accent: "#2563eb",
+        image: "url('https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Cellular life, biomolecules, metabolism foundations, vitamins, hormones, and amino acids.",
+        lectures: [
+          {
+            title: "Biochemistry & Its Scope",
+            file: "Basic Biochemistry 1 history.html",
+            note: "Historical development, scope, biotechnology, and future prospects."
+          }
+        ],
+        topics: [
+          { title: "Biochemistry and its scope", points: ["Historical development.", "Modern biotechnology and future prospect of biochemistry."] },
+          { title: "The cell and its evolution", points: ["Characteristics of living matters.", "Structure and function of sub-cellular organelles, their isolation and identification.", "Evolution from molecules to the first cell, from prokaryotes to eukaryotes."] },
+          { title: "Carbohydrates", points: ["Biological importance, chemical characteristics and classification.", "Monosaccharides: properties, optical properties, confirmatory tests, derivatives, amino sugars and sugar acids.", "Disaccharides and polysaccharides: structure, properties and biological importance.", "Sugar alcohols: definition, synthesis, characteristics and medicinal importance."] },
+          { title: "Lipid", points: ["Nomenclature and classification of lipids.", "General reactions of fats, fatty acids and sterols.", "Structure and biological functions of different classes of lipids.", "Plasma membrane, lipid bilayer, membrane fluidity, membrane-bound proteins and membrane transport."] },
+          { title: "Amino acids", points: ["Structural features and classification.", "Physico-chemical properties: ionization, titration curves and isoelectric point.", "Isolation and separation from protein hydrolysates and confirmation."] },
+          { title: "Vitamins and hormones", points: ["Introduction, classification and biological importance.", "Aspects of vitamin and hormone study in biochemistry."] }
+        ]
+      },
+      {
+        id: "bioorganic",
+        short: "BO",
+        name: "Bioorganic Chemistry-I",
+        accent: "#0ea5b7",
+        image: "url('https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Organic bonding, molecular shape, aliphatic chemistry, aromatic chemistry, and functional groups.",
+        lecture: "Bio Organic Chemistry 1 Introduction.html",
+        topics: [
+          { title: "Introduction", points: ["Covalent bonds and shapes of molecules.", "Electronic structure of atoms.", "Lewis model of bonding, octet rule, functional groups, bond length, bond angles, polar and non-polar molecules.", "Molecular orbital theory of covalent bonding."] },
+          { title: "Aliphatic compounds", points: ["Alkanes: occurrence, structure, nomenclature, conformation, synthesis, physical and chemical properties.", "Alkenes and alkynes: occurrence, structure, nomenclature, synthesis, properties and reactions.", "Alkylhalides, alcohols, ethers, diols, aldehydes, ketones, carboxylic acids and amines."] },
+          { title: "Aromatic compounds", points: ["Aromatic hydrocarbons: aromaticity, orientation and substitution.", "Benzene derivatives and aromatic substitution.", "Aldehydes, ketones, carboxylic acids, nitro-compounds, amines and phenols."] }
+        ]
+      },
+      {
+        id: "biophysical",
+        short: "BP",
+        name: "Biophysical Chemistry-I",
+        accent: "#7c3aed",
+        image: "url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Atomic structure, chemical bonding, gases, liquids, acids and bases, equilibrium, kinetics, and catalysis.",
+        lecture: null,
+        topics: [
+          { title: "Atomic Structure", points: ["Fundamental particles.", "Atomic models: Rutherford, Bohr, Sommerfeld modification.", "Quantum theory, Pauli exclusion principle, Hund's rule, Aufbau principle.", "De-Broglie equation and Heisenberg uncertainty principle."] },
+          { title: "Chemical Bonds", points: ["Lewis formula, octet rule and exceptions.", "Ionic bond, Fajan's rule, lattice energy and Born-Haber cycle.", "Covalent bond, VSEPR, resonance, dipole moment and molecular orbital theory.", "Coordination, metallic, hydrogen and Van der Waals bonds."] },
+          { title: "Gaseous State", points: ["Gas laws, ideal gas equation and kinetic theory.", "Van der Waals equation and critical phenomena."] },
+          { title: "Properties of Liquids and Solutions", points: ["Viscosity, surface tension and interfacial tension.", "Solution types, concentration units and volumetric calculations.", "Intermolecular forces and diffusion."] },
+          { title: "Acids and Bases", points: ["Arrhenius, Bronsted-Lowry and Lewis concepts.", "Conjugate acids and bases; acid-base strength.", "HSAB principle, buffer solutions and Henderson-Hasselbalch equation.", "Indicators, pH curves and indicator selection."] },
+          { title: "Chemical Equilibrium", points: ["Nature and constants of chemical equilibrium.", "Relationship to free energy and temperature effects.", "Coupling of reactions and biochemical relevance."] },
+          { title: "Chemical Kinetics and Catalysis", points: ["Reaction rates and rate laws.", "Zero, first, second and pseudo first-order reactions.", "Temperature effects, collision theory and activated complex theory.", "Catalysis: types, characteristics and activation energy."] }
+        ]
+      },
+      {
+        id: "molecular-biology",
+        short: "MB",
+        name: "Molecular Biology-I",
+        accent: "#c7566a",
+        image: "url('https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Heredity, DNA, nucleic acids, gene expression, and recombinant DNA technology.",
+        lecture: "molecular biology1 .html",
+        topics: [
+          { title: "Heredity", points: ["Mendel's laws of inheritance.", "Gene concept.", "Conceptual relationship between gene and chromosomes.", "Gene and enzymes."] },
+          { title: "DNA as genetic material", points: [] },
+          { title: "Chemistry of nucleic acids", points: ["Classification and composition of nucleic acids.", "Bases, sugars, nucleosides, nucleotides and polynucleotides."] },
+          { title: "DNA structure", points: ["Watson and Crick model and its characteristics.", "Isolation of DNA from natural sources.", "Physicochemical properties of DNA."] },
+          { title: "Gene expression", points: ["Replication as continuity of genetic information transfer.", "Transcription, types of RNAs, their characteristics and function.", "Translation, collinearity of genes and proteins."] },
+          { title: "Application of Molecular Biology", points: ["Recombinant DNA technology: isolation of genes, restriction endonuclease, vectors, cloning and expression.", "Agricultural, industrial, medical and forensic applications.", "PCR, DNA fingerprinting, DNA mapping and DNA sequencing."] },
+          { title: "Recombinant DNA Technology", points: ["Concept and controversies of genetically modified organisms."] }
+        ]
+      },
+      {
+        id: "botany",
+        short: "BT",
+        name: "Botany",
+        accent: "#2f7d4e",
+        image: "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Plant kingdom, families, plant regulators, flowering, photosynthesis, respiration, pathology, cell division and genetics.",
+        lecture: "Botany plant-kingdom.html",
+        topics: [
+          { title: "Introduction to plant kingdom", points: ["Plant kingdom and important features of major plant groups."] },
+          { title: "Study of plant families", points: ["Solanaceae.", "Apocynaceae.", "Liliaceae.", "Zingiberaceae."] },
+          { title: "Plant growth regulators", points: ["Definition.", "Classification and physiological effects of auxins, gibberellins, abscisic acid and cytokinins."] },
+          { title: "Physiology of flowering", points: ["Photoperiodism.", "Vernalization."] },
+          { title: "Photosynthesis", points: ["Definition.", "Light reaction, electron transport system and photophosphorylation.", "Calvin cycle, C3 and C4 cycles and their importance."] },
+          { title: "Respiration", points: ["Definition, glycolysis and its importance."] },
+          { title: "Plant pathology", points: ["Introduction and general symptoms of plant diseases.", "Brown spot disease of rice.", "Tikka disease of groundnut.", "Rust disease of wheat.", "Late blight of potato."] },
+          { title: "Cell division", points: ["Process of mitosis, meiosis and their significance."] },
+          { title: "Chromosomal aberrations", points: ["Numerical aberrations: aneuploidy, euploidy, polyploidy.", "Structural aberrations: deletion, duplication, inversion and translocation."] },
+          { title: "Mendelism", points: ["Mendel's laws of inheritance.", "Causes of his success.", "Apparent exceptions of Mendel's laws."] },
+          { title: "Hybridization", points: ["Definition.", "Artificial technique.", "Importance."] },
+          { title: "Back cross breeding", points: ["Introduction and methods.", "Merits and demerits."] }
+        ]
+      },
+      {
+        id: "botany-practical",
+        short: "BP",
+        name: "Botany Practical",
+        accent: "#d99a22",
+        image: "url('https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Microscopy, plant identification, cell division studies, plant physiology experiments, pathology and reproductive techniques.",
+        lecture: null,
+        topics: [
+          { title: "Basic Laboratory Skills and Microscopy", points: ["Study and handling simple and compound microscopes.", "Observation and identification of stomata, staminal hair, bast fibre, pollen mother cell, pollen grain, epidermal cells and vascular cells."] },
+          { title: "Plant Identification and Taxonomy", points: ["Study of plant families covered in theory, subject to availability of specimens.", "Identification of different plant species."] },
+          { title: "Cell Division Studies", points: ["Study of mitosis in onion root tip cells.", "Identification of different stages of mitosis and meiosis."] },
+          { title: "Plant Physiology Experiments", points: ["Evolution of oxygen during photosynthesis.", "Effect of light intensity on photosynthesis.", "Osmosis experiment using potato osmoscope."] },
+          { title: "Plant Pathology", points: ["Study of symptoms of common plant diseases.", "Citrus canker, common scab of potato, red rot of sugarcane and brown spot of rice."] },
+          { title: "Reproductive Biology and Cytology Techniques", points: ["Study of pollen grain viability using acetocarmine.", "Study of emasculation technique."] }
+        ]
+      },
+      {
+        id: "liberation-war",
+        short: "LW",
+        name: "History of Liberation War of Bangladesh",
+        accent: "#dc2626",
+        image: "url('https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Background, political mobilization, atrocities, resistance, international dynamics, victory and post-war development.",
+        lecture: null,
+        topics: [
+          { title: "Background and Origins", points: ["Introduction, definition and comparative liberation wars.", "Socio-economic, cultural and political background."] },
+          { title: "Political Mobilization and Outbreak", points: ["Student movements.", "Election of 1970.", "Non-cooperation movement.", "Declaration of independence.", "Operation Searchlight.", "Provisional government and contribution of intellectuals and professionals."] },
+          { title: "Atrocities and Humanitarian Crisis", points: ["Mass killings, abuse and torture.", "Killing of students and intellectuals.", "Refugee crisis.", "Anti-liberation forces and war crimes."] },
+          { title: "Resistance and Freedom Fighter Organization", points: ["Spontaneous and primary resistance.", "War strategies.", "Weapons, training and youth camps.", "Participation of students, women and general population."] },
+          { title: "National and International Political Dynamics", points: ["Contribution of political parties in Bangladesh, India and Pakistan.", "Influence of superpowers and Muslim countries."] },
+          { title: "Global Reactions", points: ["Mass media and public opinion.", "Responses of emigrant Bengalis and foreign citizens.", "Trial of national leaders in Pakistan and international reactions.", "Role of the United Nations and international organizations."] },
+          { title: "Victory and Post-War Developments", points: ["Contribution of India: government, people and media.", "Joint force formation and final victory.", "National leadership during the war period.", "Constitutional development."] }
+        ]
+      },
+      {
+        id: "practical-biochemistry",
+        short: "PB",
+        name: "Practical Biochemistry and Molecular Biology-I",
+        accent: "#475569",
+        image: "url('https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1100&q=80')",
+        intro: "Laboratory skills, titration, biomolecule estimation, qualitative organic analysis and colorimetric tests.",
+        lecture: null,
+        topics: [
+          { title: "Basic Laboratory Skills", points: ["Use of electronic balances.", "Preparation of standard solutions."] },
+          { title: "Titration and Standardization Techniques", points: ["Standardization of HCl."] },
+          { title: "Quantitative Estimation", points: ["Estimation of acetic acid content of vinegar.", "Estimation of calcium from milk.", "Estimation of iron from blood.", "Estimation of ascorbic acid content of biological samples."] },
+          { title: "Qualitative Analysis of Organic Compounds", points: ["Identification of organic compounds."] },
+          { title: "Colorimetric Tests for Biomolecules", points: ["Colour tests for biomolecules."] }
+        ]
+      }
+    ];
+
+    let activeSubject = subjects[0];
+    let activeTab = "syllabus";
+
+    const subjectGrid = document.getElementById("subjectGrid");
+    const subjectList = document.getElementById("subjectList");
+    const detailCard = document.getElementById("detailCard");
+    const deskTitle = document.getElementById("deskTitle");
+    const deskIntro = document.getElementById("deskIntro");
+    const syllabusTable = document.getElementById("syllabusTable");
+
+    function topicMarkup(topics) {
+      return topics.map((topic) => `
+        <article class="topic">
+          <h4>${topic.title}</h4>
+          ${topic.points.length ? `<ul>${topic.points.map((point) => `<li>${point}</li>`).join("")}</ul>` : `<p class="lead">Details can be added later.</p>`}
+        </article>
+      `).join("");
+    }
+
+    function renderCards() {
+      subjectGrid.innerHTML = subjects.map((subject) => `
+        <button class="subject-card" type="button" data-subject="${subject.id}" style="--accent:${subject.accent}">
+          <span class="subject-icon">${subject.short}</span>
+          <h3>${subject.name}</h3>
+          <p>${subject.intro}</p>
+          <span class="status-row">
+            <span class="pill">${subject.topics.length} syllabus topics</span>
+            <span class="pill ${getLectures(subject).length ? "" : "empty"}">${getLectures(subject).length ? `${getLectures(subject).length} lecture${getLectures(subject).length > 1 ? "s" : ""}` : "Lecture empty"}</span>
+          </span>
+        </button>
+      `).join("");
+
+      subjectGrid.querySelectorAll("[data-subject]").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectSubject(button.dataset.subject);
+          document.getElementById("workspace").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    }
+
+    function renderSubjectList() {
+      subjectList.innerHTML = subjects.map((subject) => `
+        <button class="subject-link ${subject.id === activeSubject.id ? "active" : ""}" type="button" data-subject="${subject.id}">
+          ${subject.name}
+        </button>
+      `).join("");
+
+      subjectList.querySelectorAll("[data-subject]").forEach((button) => {
+        button.addEventListener("click", () => selectSubject(button.dataset.subject));
+      });
+    }
+
+    function getLectures(subject) {
+      if (Array.isArray(subject.lectures)) {
+        return subject.lectures;
+      }
+
+      if (subject.lecture) {
+        return [{ title: "Lecture page", file: subject.lecture, note: "Starter lecture page connected for this subject." }];
+      }
+
+      return [];
+    }
+
+    function renderDetail() {
+      deskTitle.textContent = activeSubject.name;
+      deskIntro.textContent = activeSubject.intro;
+      detailCard.style.setProperty("--detail", activeSubject.accent);
+      detailCard.style.setProperty("--image", activeSubject.image);
+
+      const lectures = getLectures(activeSubject);
+      const primaryLecture = lectures[0];
+
+      const lectureContent = lectures.length
+        ? `<div class="lecture-box">
+            <p class="lead">${lectures.length > 1 ? "Multiple lecture pages are connected for this subject. Open the topic you need, or preview the first lesson here." : "A starter lecture page is already connected for this subject. You can open it directly or preview it here."}</p>
+            <div class="lecture-list">
+              ${lectures.map((lecture, index) => `
+                <article class="lecture-card">
+                  <h4>${lecture.title}</h4>
+                  <p>${lecture.note}</p>
+                  <div class="lecture-actions">
+                    <a class="${index === 0 ? "primary-action" : "secondary-action"}" href="${lecture.file}">Open lesson</a>
+                    <a class="secondary-action" href="${lecture.file}" target="_blank" rel="noopener">New tab</a>
+                  </div>
+                </article>
+              `).join("")}
+            </div>
+            <iframe class="lecture-frame" title="${primaryLecture.title} preview" src="${primaryLecture.file}"></iframe>
+          </div>`
+        : `<div class="empty-state">
+            <div>
+              <strong>Lecture notes space is empty</strong>
+              <p>Add your lecture HTML or notes for ${activeSubject.name} later. The section is already reserved for you.</p>
+            </div>
+          </div>`;
+
+      detailCard.innerHTML = `
+        <div class="detail-hero">
+          <div class="detail-copy">
+            <h3>${activeSubject.name}</h3>
+            <p>${activeSubject.intro}</p>
+          </div>
+          <div class="detail-art" role="img" aria-label="${activeSubject.name} study image"></div>
+        </div>
+        <div class="tabbar" role="tablist" aria-label="${activeSubject.name} sections">
+          <button type="button" class="${activeTab === "syllabus" ? "active" : ""}" data-tab="syllabus">Syllabus</button>
+          <button type="button" class="${activeTab === "lecture" ? "active" : ""}" data-tab="lecture">Lecture</button>
+        </div>
+        <div class="panel ${activeTab === "syllabus" ? "active" : ""}" id="syllabusPanel">
+          <div class="topic-grid">${topicMarkup(activeSubject.topics)}</div>
+        </div>
+        <div class="panel ${activeTab === "lecture" ? "active" : ""}" id="lecturePanel">
+          ${lectureContent}
+        </div>
+      `;
+
+      detailCard.querySelectorAll("[data-tab]").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeTab = button.dataset.tab;
+          renderDetail();
+        });
+      });
+    }
+
+    function renderTable() {
+      syllabusTable.innerHTML = subjects.map((subject) => `
+        <tr>
+          <td>${subject.name}</td>
+          <td>${subject.topics.map((topic) => `<strong>${topic.title}</strong>${topic.points.length ? `<ul>${topic.points.map((point) => `<li>${point}</li>`).join("")}</ul>` : ""}`).join("")}</td>
+          <td>${getLectures(subject).length ? getLectures(subject).map((lecture) => `<a href="${lecture.file}">${lecture.title}</a>`).join("<br>") : "Empty lecture area reserved."}</td>
+        </tr>
+      `).join("");
+    }
+
+    function selectSubject(id) {
+      activeSubject = subjects.find((subject) => subject.id === id) || subjects[0];
+      activeTab = "syllabus";
+      renderSubjectList();
+      renderDetail();
+    }
+
+    renderCards();
+    renderSubjectList();
+    renderDetail();
+    renderTable();
+  </script>
+</body>
+</html>

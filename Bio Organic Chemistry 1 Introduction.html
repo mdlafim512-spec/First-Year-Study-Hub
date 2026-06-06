@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundations of Chemical Bonding & Molecular Architecture</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1a252f);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .chem-math {
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            white-space: nowrap;
+        }
+
+        nav {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        section {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .definition-box {
+            background-color: #edf2f7;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .definition-box strong {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .diagram-container {
+            background-color: #2d3748;
+            color: #a0aec0;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.2;
+        }
+
+        .diagram-title {
+            font-family: inherit;
+            color: #ecc94b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: var(--card-bg);
+            display: block;
+            overflow-x: auto;
+            white-space: normal;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .example-box {
+            background-color: #f0fff4;
+            border-left: 5px solid #38a169;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+        }
+
+        .mistake-box {
+            background-color: #fff5f5;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+        }
+
+        .summary-box {
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: var(--border-radius);
+        }
+
+        .question-box {
+            background-color: #ebf8ff;
+            border-left: 5px solid #3182ce;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .badge-def { background-color: var(--secondary-color); }
+        .badge-ex { background-color: #38a169; }
+        .badge-err { background-color: var(--accent-color); }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 28px 16px;
+            }
+
+            header h1 {
+                font-size: 1.85rem;
+                line-height: 1.2;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav {
+                position: static;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            nav a {
+                display: block;
+                padding: 8px 10px;
+                text-align: center;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .diagram-container {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                padding: 0 12px;
+            }
+
+            section {
+                padding: 16px;
+            }
+
+            h2 {
+                font-size: 1.45rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Foundations of Chemical Bonding & Molecular Architecture</h1>
+    <p>A Comprehensive, Master-Level Lecture Series on Atomic Structure, Lewis Models, VSEPR, and Molecular Orbital Theory</p>
+</header>
+
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="#definitions">1. Glossary of Terms</a></li>
+            <li><a href="#atomic-structure">2. Electronic Structure</a></li>
+            <li><a href="#lewis-bonding">3. Lewis Model & Octet Rule</a></li>
+            <li><a href="#vsepr-shapes">4. VSEPR & Shapes</a></li>
+            <li><a href="#mo-theory">5. Molecular Orbital Theory</a></li>
+            <li><a href="#polarity-properties">6. Polarity & Properties</a></li>
+            <li><a href="#study-materials">7. Exam Prep & MCQs</a></li>
+        </ul>
+    </nav>
+
+    <section id="definitions">
+        <h2>1. Comprehensive Glossary of Core Terms</h2>
+        <p>Before diving into deep conceptual frameworks, let us explicitly define the foundational terminologies that form the language of structural organic chemistry.</p>
+        
+        <div class="grid-2">
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Organic Chemistry:</strong> The scientific study of the structure, properties, composition, reactions, and preparation of carbon-containing chemical compounds.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Bioorganic Chemistry:</strong> A discipline that combines organic chemistry and biochemistry, focusing on the study of biological processes using the tools and principles of organic chemistry.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Atom:</strong> The basic unit of a chemical element, consisting of a dense central nucleus surrounded by a cloud of negatively charged electrons.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Quantum Number:</strong> A set of mathematical values that describe the energy levels, shapes, orientation, and spin states of electrons within an atom.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Principal Quantum Number (<span class="chem-math">n</span>):</strong> Specifies the main energy level or shell occupied by an electron, taking positive integer values (<span class="chem-math">1, 2, 3, &hellip;</span>).</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Subsidiary (Azimuthal) Quantum Number (<span class="chem-math">l</span>):</strong> Defines the geometric shape of the subshell/orbital, ranging from <span class="chem-math">0</span> to <span class="chem-math">n-1</span>.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Magnetic Quantum Number (<span class="chem-math">m<sub>l</sub></span>):</strong> Determines the spatial orientation of an orbital in three-dimensional space, with values from <span class="chem-math">-l</span> to <span class="chem-math">+l</span>.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Spin Quantum Number (<span class="chem-math">m<sub>s</sub></span>):</strong> Describes the intrinsic angular momentum (spin axis direction) of an electron, valued at either <span class="chem-math">+1/2</span> or <span class="chem-math">-1/2</span>.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Electron Configuration:</strong> The specific mathematical arrangement of electrons in the atomic orbitals of an atom or molecule.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Aufbau Principle:</strong> The rule stating that electrons fill lower-energy atomic orbitals before moving to higher-energy ones.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Pauli Exclusion Principle:</strong> An axiom stating that no two electrons in an atom can have the exact same set of four quantum numbers.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Hund's Rule:</strong> States that for degenerate orbitals (orbitals with identical energy), electrons fill them singly with parallel spins before pairing up.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Chemical Bonding:</strong> The net attractive forces that hold atoms or ions together to achieve structural stability.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Ionic Bond:</strong> A chemical bond formed through the complete electrostatic attraction between oppositely charged ions due to electron transfer.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Covalent Bond:</strong> A chemical bond formed by the mutual sharing of one or more pairs of valence electrons between atoms.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Molecular Orbital Theory (MOT):</strong> A bonding theory that describes the electronic structure of molecules using delocalized orbitals that span the entire molecule.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Electronegativity:</strong> A relative measure of the tendency of an atom to attract a shared pair of electrons toward itself within a chemical bond.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Sigma Bond (<span class="chem-math">&sigma;</span>):</strong> A covalent bond formed by the direct head-on (axial) overlap of atomic orbitals along the internuclear axis.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Pi Bond (<span class="chem-math">&pi;</span>):</strong> A covalent bond formed by the side-by-side (lateral) overlap of parallel <span class="chem-math">p</span> orbitals above and below the internuclear axis.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Lewis Structure:</strong> A structural diagram representing how valence electrons are arranged as bonding pairs or lone pairs in a molecule.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>VSEPR Theory:</strong> Valence Shell Electron Pair Repulsion theory; a model used to predict 3D molecular geometry based on minimizing repulsion between electron pairs.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Polarization:</strong> The distortion of the electron cloud of an atom or ion by an external electrical charge or neighboring electronegative atom.</p>
+            </div>
+            <div class="definition-box">
+                <p><span class="badge badge-def">Definition</span> <strong>Dipole Moment (<span class="chem-math">&mu;</span>):</strong> A quantitative measure of the net polarity of a molecule, calculated as the product of charge separation distance and charge magnitude.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="atomic-structure">
+        <h2>2. Electronic Structure of Atoms</h2>
+        <p>To master organic chemistry, we must understand exactly where electrons live. Modern quantum mechanics discards the simplistic idea that electrons orbit the nucleus like planets. Instead, electrons exist in 3D wave-like probability zones called <strong>orbitals</strong>.</p>
+        
+        <h3>The Four Quantum Numbers</h3>
+        <p>Every single electron in an atom is uniquely identified by four quantum numbers, which act as its precise mathematical "address":</p>
+        <ol>
+            <li><strong>Principal Quantum Number (<span class="chem-math">n</span>):</strong> Defines the main shell. As <span class="chem-math">n</span> increases, the electron's distance from the nucleus and its energy level increase.</li>
+            <li><strong>Azimuthal/Subsidiary Quantum Number (<span class="chem-math">l</span>):</strong> Defines the subshell shape. 
+                <ul>
+                    <li><span class="chem-math">l = 0 &rarr; s-orbital (spherical)</span></li>
+                    <li><span class="chem-math">l = 1 &rarr; p-orbital (dumbbell-shaped)</span></li>
+                    <li><span class="chem-math">l = 2 &rarr; d-orbital (clover-shaped)</span></li>
+                </ul>
+            </li>
+            <li><strong>Magnetic Quantum Number (<span class="chem-math">m<sub>l</sub></span>):</strong> Defines the orientation of the orbital in space. For example, a <span class="chem-math">p</span> subshell (<span class="chem-math">l=1</span>) has three orientations: <span class="chem-math">m<sub>l</sub> = -1, 0, +1</span>, corresponding to the <span class="chem-math">p<sub>x</sub>, p<sub>y</sub>,</span> and <span class="chem-math">p<sub>z</sub></span> orbitals.</li>
+            <li><strong>Spin Quantum Number (<span class="chem-math">m<sub>s</sub></span>):</strong> Defines the internal orientation of the electron's intrinsic magnetic field (<span class="chem-math">+1/2</span> denoted as <span class="chem-math">&uarr;</span>, <span class="chem-math">-1/2</span> denoted as <span class="chem-math">&darr;</span>).</li>
+        </ol>
+
+        <div class="diagram-container">
+<div class="diagram-title">Text Diagram 1: Shapes and Spatial Orientations of Orbitals</div>
+    [s-orbital]              [p-orbital along X-axis]           [p-orbital along Y-axis]
+       ___                             ___                               
+     /     \                          /   \                             / \ 
+    |   +   |  (Spherical)           | - | + |  (p_x)                  | + | (p_y)
+     \ ___ /                          \___/                             \ / 
+                                                                         | |
+                                                                        / _ \
+                                                                       |  -  |
+                                                                        \___/
+</div>
+
+        <h3>Rules for Building Electron Configurations</h3>
+        <p>When filling up these subshells with electrons for any given atom, three core principles must be strictly followed simultaneously:</p>
+        <ul>
+            <li><strong>Aufbau Principle:</strong> Always fill from the lowest energy level upwards. The order of filling follows the diagonal rule: <span class="chem-math">1s &rarr; 2s &rarr; 2p &rarr; 3s &rarr; 3p &rarr; 4s &rarr; 3d &hellip;</span></li>
+            <li><strong>Pauli Exclusion Principle:</strong> An orbital can hold a maximum of 2 electrons, and they must have opposite spins (<span class="chem-math">&uarr;&darr;</span>). You can never have <span class="chem-math">&uarr;&uarr;</span> in the same subshell block.</li>
+            <li><strong>Hund's Rule of Maximum Multiplicity:</strong> Don't pair electrons in a subshell until all degenerate orbitals contain at least one electron. This minimizes electron-electron repulsion.</li>
+        </ul>
+
+        <div class="example-box">
+            <h4><span class="badge badge-ex">Example</span> Electronic Configurations of Key Elements</h4>
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Atomic Number (Z)</th>
+                        <th>Full Electron Configuration</th>
+                        <th>Valence Electrons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hydrogen (H)</td>
+                        <td>1</td>
+                        <td><span class="chem-math">1s<sup>1</sup></span></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Carbon (C)</td>
+                        <td>6</td>
+                        <td><span class="chem-math">1s<sup>2</sup> 2s<sup>2</sup> 2p<sub>x</sub><sup>1</sup> 2p<sub>y</sub><sup>1</sup></span></td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Nitrogen (N)</td>
+                        <td>7</td>
+                        <td><span class="chem-math">1s<sup>2</sup> 2s<sup>2</sup> 2p<sub>x</sub><sup>1</sup> 2p<sub>y</sub><sup>1</sup> 2p<sub>z</sub><sup>1</sup></span></td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Oxygen (O)</td>
+                        <td>8</td>
+                        <td><span class="chem-math">1s<sup>2</sup> 2s<sup>2</sup> 2p<sub>x</sub><sup>2</sup> 2p<sub>y</sub><sup>1</sup> 2p<sub>z</sub><sup>1</sup></span></td>
+                        <td>6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="lewis-bonding">
+        <h2>3. The Lewis Model, Octet Rule, and Functional Groups</h2>
+        <p>In 1916, G.N. Lewis proposed that atoms bond to achieve a stable electronic configuration similar to noble gases. For most elements of biological importance (C, N, O, F), this means surrounding themselves with <strong>eight valence electrons</strong>—known as the <strong>Octet Rule</strong>. (Hydrogen is an exception, seeking a stable duet of 2 electrons).</p>
+
+        <h3>How to Construct Accurate Lewis Structures</h3>
+        <ol>
+            <li>Count the total number of valence electrons from all participating atoms.</li>
+            <li>Draw a skeletal structure connecting atoms with single bonds (each bond uses 2 electrons). Place the least electronegative atom in the center.</li>
+            <li>Distribute the remaining electrons as lone pairs to satisfy the octet of the outer atoms first, then place left-over electrons on the central atom.</li>
+            <li>If any central atom lacks an octet, move lone pairs from neighboring atoms to form double or triple bonds.</li>
+        </ol>
+
+        <div class="diagram-container">
+<div class="diagram-title">Text Diagram 2: Lewis Structures with Lone Pairs and Shared Pairs</div>
+    Water Molecule (H2O):                Carbon Dioxide (CO2):
+         ..                                   ..       ..
+       H-O-H                                 :O = C = O:
+         ..
+     (2 Lone Pairs on O,                 (2 Double Bonds, 
+      2 Shared Pairs)                     4 Lone Pairs Total)
+</div>
+
+        <h3>Functional Groups: The Structural Blocks of Bioorganic Chemistry</h3>
+        <p>In organic chemistry, atoms cluster into predictable patterns called <strong>functional groups</strong>. These groups dictate the entire chemical reactivity and physical properties of biomolecules.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Functional Class</th>
+                    <th>General Structural Formula</th>
+                    <th>Key Characteristics & Properties</th>
+                    <th>Biological Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Alcohol</strong></td>
+                    <td>R–OH</td>
+                    <td>Highly polar, forms intermolecular hydrogen bonds, high boiling points.</td>
+                    <td>Ethanol, Glucose</td>
+                </tr>
+                <tr>
+                    <td><strong>Carboxylic Acid</strong></td>
+                    <td>R–COOH</td>
+                    <td>Acidic properties, can release <span class="chem-math">H<sup>+</sup></span> in water, highly polar.</td>
+                    <td>Acetic acid, Amino acids</td>
+                </tr>
+                <tr>
+                    <td><strong>Amine</strong></td>
+                    <td>R–NH₂ / R₂NH</td>
+                    <td>Basic and nucleophilic, clear structural component of amino acid building blocks.</td>
+                    <td>Adenine, Neurotransmitters</td>
+                </tr>
+                <tr>
+                    <td><strong>Amide</strong></td>
+                    <td>R–CONH–R'</td>
+                    <td>Planar structural property, highly stable, forms backbone structural chains.</td>
+                    <td>Peptide bonds in proteins</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="vsepr-shapes">
+        <h2>4. VSEPR Theory, Bond Lengths, and Bond Angles</h2>
+        <p>Lewis structures show us connectivity, but they do not show us 3D shapes. To understand the actual 3D shapes of molecules, we use the <strong>Valence Shell Electron Pair Repulsion (VSEPR) Theory</strong>.</p>
+        
+        <h3>The Fundamental Principle of VSEPR</h3>
+        <p>Electron pairs (whether they are in bonds or lone pairs) are negatively charged. Therefore, they repel each other. To minimize this repulsion, electron clouds spread as far apart as possible in 3D space. Crucially, <strong>lone pairs take up more space than bonding pairs</strong> because they are held by only one nucleus, causing greater repulsion:</p>
+        <blockquote style="background: #f7fafc; padding: 10px; border-left: 4px solid var(--secondary-color); margin: 15px 0;">
+            <strong>Repulsion Strength Order:</strong> Lone Pair - Lone Pair > Lone Pair - Bonding Pair > Bonding Pair - Bonding Pair
+        </blockquote>
+
+        <h3>Geometric Configurations Summary Table</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Central Atom Steric Number</th>
+                    <th>Bonding Pairs</th>
+                    <th>Lone Pairs</th>
+                    <th>Molecular Geometry Shape</th>
+                    <th>Ideal Bond Angle</th>
+                    <th>Real-World Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>Linear</td>
+                    <td>180&deg;</td>
+                    <td><span class="chem-math">CO<sub>2</sub></span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>Trigonal Planar</td>
+                    <td>120&deg;</td>
+                    <td><span class="chem-math">BF<sub>3</sub></span>, Formaldehyde</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>Tetrahedral</td>
+                    <td>109.5&deg;</td>
+                    <td>Methane (<span class="chem-math">CH<sub>4</sub></span>)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>Trigonal Pyramidal</td>
+                    <td>107&deg; (Reduced by lone pair)</td>
+                    <td>Ammonia (<span class="chem-math">NH<sub>3</sub></span>)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Bent / V-Shaped</td>
+                    <td>104.5&deg; (Reduced by 2 lone pairs)</td>
+                    <td>Water (<span class="chem-math">H<sub>2</sub>O</span>)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="diagram-container">
+<div class="diagram-title">Text Diagram 3: 3D Geometries with Deviations due to Lone Pairs</div>
+     Tetrahedral (Methane)        Trigonal Pyramidal (Ammonia)       Bent (Water)
+            H                             ..                               ..
+            |                             N                                O
+            C                           / | \                            /   \
+          / | \                        H  H  H                          H     H
+         H  H  H                     
+      Angle: 109.5&deg;                 Angle: 107&deg;                      Angle: 104.5&deg;
+</div>
+    </section>
+
+    <section id="mo-theory">
+        <h2>5. Molecular Orbital Theory (MOT) of Covalent Bonding</h2>
+        <p>While the Lewis model and VSEPR provide easy-to-use structural insights, they fail to explain complex phenomena like magnetic properties and electronic transitions. <strong>Molecular Orbital Theory (MOT)</strong> provides a more complete picture. It states that when individual atomic orbitals combine, they lose their identity and form entirely new <strong>molecular orbitals (MOs)</strong> that extend across the entire molecule.</p>
+
+        <h3>Linear Combination of Atomic Orbitals (LCAO)</h3>
+        <p>When two atomic wavefunctions (<span class="chem-math">&psi;<sub>A</sub></span> and <span class="chem-math">&psi;<sub>B</sub></span>) combine, they can do so in two distinct ways:</p>
+        <ul>
+            <li><strong>Constructive Interference (In-Phase Addition):</strong> Wave amplitudes add together, creating a high electron density between the nuclei. This forms a stable, low-energy <strong>Bonding Molecular Orbital (<span class="chem-math">&sigma;</span> or <span class="chem-math">&pi;</span>)</strong>.</li>
+            <li><strong>Destructive Interference (Out-of-Phase Subtraction):</strong> Wave amplitudes cancel out, creating a region of zero electron density between the nuclei known as a <strong>node</strong>. This forms an unstable, high-energy <strong>Antibonding Molecular Orbital (<span class="chem-math">&sigma;<sup>*</sup></span> or <span class="chem-math">&pi;<sup>*</sup></span>)</strong>.</li>
+        </ul>
+
+        <div class="diagram-container">
+<div class="diagram-title">Text Diagram 4: Molecular Orbital Energy Diagram for Hydrogen (H2)</div>
+    Energy
+      ^         Antibonding Orbital (&sigma;* 1s)
+      |                  [   ]
+      |                 /     \
+      |   Atom A (1s)  /       \  Atom B (1s)
+      |      [ &uarr; ]         [ &darr; ]
+      |                \       /
+      |                 \     /
+      |                  [ &uarr;&darr; ]
+      |          Bonding Orbital (&sigma; 1s)
+</div>
+
+        <h3>Sigma (<span class="chem-math">&sigma;</span>) vs. Pi (<span class="chem-math">&pi;</span>) Bonds</h3>
+        <p>Covalent links form through two distinct geometric overlapping pathways:</p>
+        <ul>
+            <li><strong>Sigma (<span class="chem-math">&sigma;</span>) Bonds:</strong> Head-on overlap of orbitals along the line connecting the nuclei. Rotation around a single <span class="chem-math">&sigma;</span> bond is completely free. This makes up all single bonds.</li>
+            <li><strong>Pi (<span class="chem-math">&pi;</span>) Bonds:</strong> Side-by-side overlap of parallel <span class="chem-math">p</span> orbitals. This overlap is weaker than a head-on sigma overlap, and rotation is locked because turning the bond would break the side-by-side connection. This makes up the extra connections in double and triple bonds.</li>
+        </ul>
+    </section>
+
+    <section id="polarity-properties">
+        <h2>6. Polarization, Dipole Moments, and Molecular Polarity</h2>
+        <p>Not all covalent bonds share electrons equally. The sharing depends entirely on the difference in <strong>electronegativity</strong> between the two bonded atoms.</p>
+
+        <h3>Bond Polarity vs. Molecular Polarity</h3>
+        <p>A bond is polar if there is an unequal sharing of electrons. This creates a partial negative charge (<span class="chem-math">&delta;-</span>) on the more electronegative atom and a partial positive charge (<span class="chem-math">&delta;+</span>) on the less electronegative atom. However, <strong>having polar bonds does not always mean the whole molecule is polar</strong>.</p>
+        <ul>
+            <li><strong>Symmetrical Molecules:</strong> If polar bonds are arranged symmetrically, their individual bond dipoles cancel each other out, resulting in a net dipole moment of zero (<span class="chem-math">&mu; = 0</span>).</li>
+            <li><strong>Asymmetrical Molecules:</strong> If the polar bonds are arranged asymmetrically (often due to lone pairs), the bond dipoles reinforce each other, creating a polar molecule with a net dipole moment (<span class="chem-math">&mu; > 0</span>).</li>
+        </ul>
+
+        <div class="example-box">
+            <h4><span class="badge badge-ex">Example</span> Comparing Polar and Non-Polar Systems</h4>
+            <p><strong>Carbon Dioxide (<span class="chem-math">CO<sub>2</sub></span>):</strong> The <span class="chem-math">C=O</span> bonds are highly polar because oxygen is more electronegative than carbon. However, because the molecule is linear (<span class="chem-math">O=C=O</span>), the two bond dipoles pull in exactly opposite directions and cancel each other out. The net dipole moment is <span class="chem-math">&mu; = 0</span>, making it a <strong>non-polar molecule</strong>.</p>
+            <p><strong>Water (<span class="chem-math">H<sub>2</sub>O</span>):</strong> The <span class="chem-math">O-H</span> bonds are highly polar. Because water has a bent shape due to its lone pairs, the dipoles pull upward toward the oxygen atom and do not cancel out. The net dipole moment is <span class="chem-math">&mu; = 1.84 D</span>, making it a <strong>highly polar molecule</strong>.</p>
+        </div>
+    </section>
+
+    <section id="study-materials">
+        <h2>7. Comprehensive Examination Prep & Self-Assessment</h2>
+        <p>This section is designed to test your understanding of the material and help you avoid common mistakes on exams.</p>
+
+        <div class="mistake-box">
+            <h3><span class="badge badge-err">Common Mistake</span> Common Student Pitfalls on Exams</h3>
+            <ul>
+                <li><strong>Confusing Electron Geometry with Molecular Shape:</strong> Methane, Ammonia, and Water all have a <em>tetrahedral electron geometry</em> because they all have 4 electron clouds. However, their <em>molecular shapes</em> are different (Tetrahedral, Trigonal Pyramidal, and Bent) because we only look at the positions of the atoms, not the lone pairs, when naming the shape.</li>
+                <li><strong>Drawing Incorrect Arrows for Dipole Moments:</strong> Remember that the dipole arrow (<span class="chem-math">&rarr;</span>) points away from the positive center and toward the region of high electron density (the more electronegative atom).</li>
+                <li><strong>Violating the Octet Rule for Second-Row Elements:</strong> Carbon, Nitrogen, Oxygen, and Fluorine <strong>can never expand their octet</strong> to hold more than 8 electrons. They do not have available <span class="chem-math">d</span> orbitals to hold extra electrons.</li>
+            </ul>
+        </div>
+
+        <div class="summary-box">
+            <h3>Lecture Series Summary</h3>
+            <p>We covered how electron structures are defined by quantum numbers, which determines how atoms share electrons in covalent bonds. We looked at how Lewis structures show electron connectivity, while VSEPR theory predicts 3D shapes by minimizing electron repulsion. Finally, we learned how Molecular Orbital Theory explains bonding through constructive and destructive wave interference, and how shapes and electronegativity work together to determine a molecule's polarity.</p>
+        </div>
+
+        <h3>High-Yield Multiple-Choice Question (MCQ) Points</h3>
+        <ul>
+            <li>&#10004; The principal quantum number <span class="chem-math">n</span> defines the size and energy of an orbital shell.</li>
+            <li>&#10004; A single <span class="chem-math">&sigma;</span> bond allows free rotation, while a <span class="chem-math">&pi;</span> bond locks rotation due to side-by-side orbital overlap.</li>
+            <li>&#10004; Symmetrical molecules like <span class="chem-math">BF<sub>3</sub></span>, <span class="chem-math">CCl<sub>4</sub></span>, and <span class="chem-math">CO<sub>2</sub></span> contain polar bonds but have a net dipole moment of zero (<span class="chem-math">&mu; = 0</span>).</li>
+            <li>&#10004; Lone pairs always exert more repulsive force than bonding pairs, which shrinks neighboring bond angles.</li>
+        </ul>
+
+        <div class="question-box">
+            <h3>Sample Exam Questions (With Solutions)</h3>
+            
+            <p><strong>Question 1 (Short Answer):</strong> Explain why the bond angle in Methane (<span class="chem-math">CH<sub>4</sub></span>) is 109.5&deg;, while the bond angle in Water (<span class="chem-math">H<sub>2</sub>O</span>) is reduced to 104.5&deg;, even though both central atoms have four electron domains.</p>
+            <p><em>Solution:</em> Both molecules have a steric number of 4, meaning they both have a tetrahedral arrangement of electron pairs. In methane, all four pairs are bonding pairs, which repel each other equally to create an ideal angle of 109.5&deg;. Water, however, has two bonding pairs and two lone pairs. According to VSEPR theory, lone pairs take up more space and push harder against neighboring clouds than bonding pairs do. These two lone pairs push the <span class="chem-math">O-H</span> bonds closer together, reducing the bond angle to 104.5&deg;.</p>
+
+            <hr style="margin:15px 0; border:0; border-top:1px solid #cbd5e0;">
+
+            <p><strong>Question 2 (MO Theory Challenge):</strong> Describe what happens when two atomic <span class="chem-math">1s</span> orbitals combine out-of-phase. What kind of molecular orbital is formed, and what are its features?</p>
+            <p><em>Solution:</em> When two atomic <span class="chem-math">1s</span> orbitals combine out-of-phase, they undergo destructive wave interference. This forms an <strong>antibonding sigma orbital (<span class="chem-math">&sigma;<sup>*</sup><sub>1s</sub></span>)</strong>. This orbital has higher energy than the original atomic orbitals, making the molecule less stable when occupied. It features a <strong>nodal plane</strong> between the two nuclei where the probability of finding an electron is exactly zero.</p>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2026 Advanced Bioorganic Chemistry Learning Portal. Created for Academic Instruction.</p>
+</footer>
+
+</body>
+</html>

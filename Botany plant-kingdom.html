@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kingdom Plantae | Living Green Worlds</title>
+  <style>
+    :root {
+      --canopy: #16382c;
+      --leaf: #2f7d4e;
+      --moss: #88b04b;
+      --sun: #f2c14e;
+      --petal: #d65f5f;
+      --ink: #17211d;
+      --muted: #617067;
+      --mist: #f4f7f1;
+      --paper: #ffffff;
+      --line: #dce6d7;
+      --shadow: 0 18px 50px rgba(24, 45, 34, 0.14);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--mist);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      align-items: end;
+      color: #ffffff;
+      background:
+        linear-gradient(180deg, rgba(13, 36, 28, 0.18), rgba(13, 36, 28, 0.84)),
+        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=80") center / cover;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 56px;
+    }
+
+    .top-nav {
+      position: fixed;
+      inset: 18px 18px auto;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .top-nav-inner {
+      pointer-events: auto;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius);
+      background: rgba(14, 36, 28, 0.72);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(14px);
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #eef7eb;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--sun);
+      box-shadow: 0 0 0 5px rgba(242, 193, 78, 0.22);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 880px;
+      font-size: clamp(2.6rem, 7vw, 6.4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: #edf7ec;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-weight: 800;
+      background: #ffffff;
+      color: var(--canopy);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: #ffffff;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1.2fr);
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--leaf);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+      color: var(--canopy);
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .feature-band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-band img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+    }
+
+    .feature-copy {
+      padding: clamp(24px, 5vw, 52px);
+      display: grid;
+      align-content: center;
+    }
+
+    .feature-copy p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: var(--radius);
+      background: #eef5eb;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--canopy);
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .moment {
+      position: relative;
+      min-height: 220px;
+      padding: 22px;
+      border-radius: var(--radius);
+      color: #ffffff;
+      background: var(--canopy);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .moment:nth-child(2) {
+      background: #285d45;
+    }
+
+    .moment:nth-child(3) {
+      background: #6f863c;
+    }
+
+    .moment:nth-child(4) {
+      background: #b05e43;
+    }
+
+    .moment::after {
+      content: "";
+      position: absolute;
+      right: -46px;
+      bottom: -48px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 28px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .moment time {
+      display: block;
+      margin-bottom: 42px;
+      font-weight: 900;
+      color: #fff4c7;
+    }
+
+    .moment h3,
+    .group-panel h3,
+    .quiz-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .moment p,
+    .group-panel p,
+    .quiz-card p {
+      margin: 0;
+    }
+
+    .groups-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .group-tabs {
+      display: grid;
+      gap: 10px;
+      position: sticky;
+      top: 84px;
+    }
+
+    .tab-button {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--canopy);
+      padding: 14px 16px;
+      text-align: left;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 26px rgba(24, 45, 34, 0.06);
+    }
+
+    .tab-button[aria-selected="true"] {
+      color: #ffffff;
+      background: var(--leaf);
+      border-color: var(--leaf);
+    }
+
+    .group-panel {
+      display: none;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .group-panel.active {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .group-panel img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .group-content {
+      padding: clamp(22px, 4vw, 42px);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 22px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #eef5eb;
+      color: var(--leaf);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .fact-list {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .fact-list li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .fact-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--moss);
+      box-shadow: 0 0 0 5px #edf5e8;
+    }
+
+    .compare-shell {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      min-width: 840px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #ffffff;
+      background: var(--canopy);
+      font-size: 0.88rem;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8faf5;
+    }
+
+    td:first-child {
+      color: var(--canopy);
+      font-weight: 900;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .quiz-card {
+      min-height: 230px;
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-card button {
+      margin-top: 20px;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--canopy);
+      color: #ffffff;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--leaf);
+      font-weight: 800;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    footer {
+      padding: 34px 0;
+      color: #d9ead6;
+      background: var(--canopy);
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .top-nav {
+        display: none;
+      }
+
+      .section-head,
+      .feature-band,
+      .groups-layout,
+      .group-panel.active,
+      .quiz-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .group-tabs {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .group-panel img {
+        min-height: 280px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: 78vh;
+      }
+
+      .hero-inner {
+        padding-bottom: 34px;
+      }
+
+      .hero-actions,
+      footer .wrap {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+
+      .stats,
+      .timeline,
+      .group-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-band img {
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav" aria-label="Primary navigation">
+    <div class="top-nav-inner">
+      <a href="#overview">Overview</a>
+      <a href="#history">History</a>
+      <a href="#groups">Groups</a>
+      <a href="#compare">Compare</a>
+      <a href="#quiz">Quiz</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Kingdom Plantae</p>
+      <h1>Living green worlds that changed Earth</h1>
+      <p class="hero-copy">A visual guide to how plants evolved from simple aquatic ancestors into mosses, ferns, cone-bearing forests, and flowering ecosystems.</p>
+      <div class="hero-actions">
+        <a class="button" href="#groups">Explore the plant groups</a>
+        <a class="button secondary" href="#compare">Jump to comparison</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">The big idea</p>
+            <h2>Plants are Earth's solar engines.</h2>
+          </div>
+          <p class="lead">Kingdom Plantae includes multicellular, eukaryotic, photosynthetic organisms. They build food from sunlight, release oxygen, stabilize habitats, and form the foundation of most terrestrial food webs.</p>
+        </div>
+
+        <div class="feature-band">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80" alt="Sunlit green leaves">
+          <div class="feature-copy">
+            <p>University-level plant study is really a story of adaptation: surviving on land, moving water through tissues, making seeds, and finally enclosing seeds inside fruits.</p>
+            <p>Instead of keeping every raw note, this website focuses on the memorable pattern: <strong>non-vascular to vascular, seedless to seed-bearing, naked seed to enclosed seed.</strong></p>
+            <div class="stats" aria-label="Plant kingdom highlights">
+              <div class="stat">
+                <strong>5</strong>
+                <span>major groups</span>
+              </div>
+              <div class="stat">
+                <strong>2</strong>
+                <span>life phases</span>
+              </div>
+              <div class="stat">
+                <strong>1</strong>
+                <span>green lineage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="history">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Classification story</p>
+            <h2>How the meaning of plant changed.</h2>
+          </div>
+          <p class="lead">Early systems grouped organisms by visible habits. Modern classification uses nutrition, cell structure, reproduction, and DNA relationships.</p>
+        </div>
+
+        <div class="timeline" aria-label="History of plant classification">
+          <article class="moment">
+            <time>4th century BCE</time>
+            <h3>Aristotle</h3>
+            <p>Living things were split into plants and animals. Plants were mostly defined as organisms that did not move.</p>
+          </article>
+          <article class="moment">
+            <time>1735</time>
+            <h3>Linnaeus</h3>
+            <p>The two-kingdom system placed many cell-walled organisms, including fungi and algae, under Plantae.</p>
+          </article>
+          <article class="moment">
+            <time>1969</time>
+            <h3>Whittaker</h3>
+            <p>The five-kingdom system separated fungi and bacteria from true plants using nutrition and cell structure.</p>
+          </article>
+          <article class="moment">
+            <time>Today</time>
+            <h3>DNA evidence</h3>
+            <p>Molecular phylogenetics refines Plantae as the green lineage: algae, bryophytes, pteridophytes, gymnosperms, and angiosperms.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="groups">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Plant groups</p>
+            <h2>Five steps in the green expansion.</h2>
+          </div>
+          <p class="lead">Choose a group to see its habitat, body plan, vascular condition, reproductive strategy, and examples.</p>
+        </div>
+
+        <div class="groups-layout">
+          <div class="group-tabs" role="tablist" aria-label="Major plant groups">
+            <button class="tab-button" role="tab" aria-selected="true" aria-controls="algae" id="tab-algae">Algae</button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="bryophytes" id="tab-bryophytes">Bryophytes</button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="pteridophytes" id="tab-pteridophytes">Pteridophytes</button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="gymnosperms" id="tab-gymnosperms">Gymnosperms</button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="angiosperms" id="tab-angiosperms">Angiosperms</button>
+          </div>
+
+          <article class="group-panel active" role="tabpanel" id="algae" aria-labelledby="tab-algae">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80" alt="Green aquatic plant life">
+            <div class="group-content">
+              <h3>Algae: aquatic ancestors</h3>
+              <p>Classic botany treats algae as the simplest plant-like group. Their body is a thallus, without true roots, stems, or leaves.</p>
+              <div class="tag-row">
+                <span class="tag">Mostly aquatic</span>
+                <span class="tag">No vascular tissue</span>
+                <span class="tag">Gametophyte dominant</span>
+              </div>
+              <ul class="fact-list">
+                <li>Examples include Chlamydomonas, Spirogyra, and Sargassum.</li>
+                <li>A mucilaginous coating helps protect the body from drying in aquatic settings.</li>
+                <li>Modern systems place green algae close to the origin of land plants.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="group-panel" role="tabpanel" id="bryophytes" aria-labelledby="tab-bryophytes">
+            <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1100&q=80" alt="Moss growing on a forest floor">
+            <div class="group-content">
+              <h3>Bryophytes: first land pioneers</h3>
+              <p>Bryophytes are called the amphibians of the plant kingdom because they live on land but still need water for fertilization.</p>
+              <div class="tag-row">
+                <span class="tag">Moist habitats</span>
+                <span class="tag">Rhizoids</span>
+                <span class="tag">No xylem or phloem</span>
+              </div>
+              <ul class="fact-list">
+                <li>They lack true roots, stems, and leaves.</li>
+                <li>The green gametophyte is dominant and independent.</li>
+                <li>Mosses, liverworts, and hornworts are the key examples.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="group-panel" role="tabpanel" id="pteridophytes" aria-labelledby="tab-pteridophytes">
+            <img src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=1100&q=80" alt="Fern leaves in soft forest light">
+            <div class="group-content">
+              <h3>Pteridophytes: vascular seedless plants</h3>
+              <p>Ferns and their relatives made the breakthrough of internal transport: xylem for water and phloem for food.</p>
+              <div class="tag-row">
+                <span class="tag">True roots</span>
+                <span class="tag">True leaves</span>
+                <span class="tag">Spores, not seeds</span>
+              </div>
+              <ul class="fact-list">
+                <li>The sporophyte is the dominant, visible plant body.</li>
+                <li>Many reproduce through spores found in sori under the leaves.</li>
+                <li>Examples include Dryopteris and Equisetum.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="group-panel" role="tabpanel" id="gymnosperms" aria-labelledby="tab-gymnosperms">
+            <img src="https://images.unsplash.com/photo-1503435980610-a51f3ddfee50?auto=format&fit=crop&w=1100&q=80" alt="Tall conifer forest">
+            <div class="group-content">
+              <h3>Gymnosperms: naked-seed forests</h3>
+              <p>Gymnosperms no longer require external water for fertilization. Their seeds are exposed on cone-like structures.</p>
+              <div class="tag-row">
+                <span class="tag">Seeds present</span>
+                <span class="tag">No flowers</span>
+                <span class="tag">Often woody</span>
+              </div>
+              <ul class="fact-list">
+                <li>Needle-like leaves, thick cuticles, and sunken stomata help reduce water loss.</li>
+                <li>Seeds form on megasporophylls, commonly arranged into cones.</li>
+                <li>Examples include Pinus, Cycas, and Ginkgo biloba.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="group-panel" role="tabpanel" id="angiosperms" aria-labelledby="tab-angiosperms">
+            <img src="https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1100&q=80" alt="Flowering plants in bloom">
+            <div class="group-content">
+              <h3>Angiosperms: flowering dominators</h3>
+              <p>Angiosperms are the most diverse modern plants. Their flowers form seeds enclosed inside fruit.</p>
+              <div class="tag-row">
+                <span class="tag">Flowers</span>
+                <span class="tag">Fruits</span>
+                <span class="tag">Double fertilization</span>
+              </div>
+              <ul class="fact-list">
+                <li>Xylem vessels and companion cells make transport highly efficient.</li>
+                <li>Double fertilization creates a zygote and nutrient-rich endosperm.</li>
+                <li>Monocots include wheat and maize; dicots include sunflower, pea, and mango.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Quick comparison</p>
+            <h2>The exam-friendly pattern.</h2>
+          </div>
+          <p class="lead">The fastest way to remember the groups is to track what appears over time: vascular tissue, true organs, independence from water, seeds, flowers, and fruits.</p>
+        </div>
+
+        <div class="compare-shell">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Algae</th>
+                <th>Bryophytes</th>
+                <th>Pteridophytes</th>
+                <th>Gymnosperms</th>
+                <th>Angiosperms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Dominant phase</td>
+                <td>Gametophyte</td>
+                <td>Gametophyte</td>
+                <td>Sporophyte</td>
+                <td>Sporophyte</td>
+                <td>Sporophyte</td>
+              </tr>
+              <tr>
+                <td>Vascular system</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Present</td>
+                <td>Present</td>
+                <td>Most advanced</td>
+              </tr>
+              <tr>
+                <td>True roots and leaves</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Present</td>
+                <td>Present</td>
+                <td>Present</td>
+              </tr>
+              <tr>
+                <td>Water for fertilization</td>
+                <td>Essential</td>
+                <td>Essential</td>
+                <td>Essential</td>
+                <td>Not required</td>
+                <td>Not required</td>
+              </tr>
+              <tr>
+                <td>Seeds</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Naked seeds</td>
+                <td>Enclosed seeds</td>
+              </tr>
+              <tr>
+                <td>Flowers and fruits</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Absent</td>
+                <td>Present</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Self-check</p>
+            <h2>Three questions to lock it in.</h2>
+          </div>
+          <p class="lead">Use these quick prompts after reading. The answers are intentionally short and high-yield.</p>
+        </div>
+
+        <div class="quiz-grid">
+          <article class="quiz-card">
+            <h3>Which group first developed vascular tissue?</h3>
+            <p>Think of the first true internal transport system.</p>
+            <button type="button" data-answer="answer-1">Show answer</button>
+            <p class="answer" id="answer-1">Pteridophytes.</p>
+          </article>
+          <article class="quiz-card">
+            <h3>Why are bryophytes called amphibians of plants?</h3>
+            <p>They live on land, but one reproductive step still needs water.</p>
+            <button type="button" data-answer="answer-2">Show answer</button>
+            <p class="answer" id="answer-2">Their male gametes need a water film to reach the egg.</p>
+          </article>
+          <article class="quiz-card">
+            <h3>What separates angiosperms from gymnosperms?</h3>
+            <p>Look at the seed and the reproductive organ.</p>
+            <button type="button" data-answer="answer-3">Show answer</button>
+            <p class="answer" id="answer-3">Angiosperms have flowers and seeds enclosed in fruits.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Kingdom Plantae</strong></p>
+      <p>Designed as a clear university study guide.</p>
+    </div>
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll(".tab-button");
+    const panels = document.querySelectorAll(".group-panel");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        buttons.forEach((item) => item.setAttribute("aria-selected", "false"));
+        panels.forEach((panel) => panel.classList.remove("active"));
+        button.setAttribute("aria-selected", "true");
+        document.getElementById(button.getAttribute("aria-controls")).classList.add("active");
+      });
+    });
+
+    document.querySelectorAll("[data-answer]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const answer = document.getElementById(button.dataset.answer);
+        answer.classList.toggle("visible");
+        button.textContent = answer.classList.contains("visible") ? "Hide answer" : "Show answer";
+      });
+    });
+  </script>
+</body>
+</html>

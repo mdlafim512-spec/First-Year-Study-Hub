@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biochemistry & Its Scope</title>
+
+    <style>
+
+        /* Google Fonts */
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        /* Base Styles */
+
+        body, html {
+
+            margin: 0;
+
+            padding: 0;
+
+            font-family: 'Inter', sans-serif;
+
+            color: #333;
+
+            background-color: #f8f9fa;
+
+            line-height: 1.6;
+
+        }
+
+        h1, h2, h3 {
+
+            color: #1a365d;
+
+            margin-bottom: 15px;
+
+        }
+
+        p {
+
+            margin-bottom: 15px;
+
+            font-size: 1.05rem;
+
+        }
+
+        /* Navigation */
+
+        nav {
+
+            background-color: #1a365d;
+
+            color: white;
+
+            padding: 1rem 2rem;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        nav h2 {
+
+            margin: 0;
+
+            color: #63b3ed;
+
+            font-size: 1.5rem;
+
+        }
+
+        nav ul {
+
+            list-style: none;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            gap: 20px;
+
+        }
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition: color 0.3s;
+
+        }
+
+        nav a:hover {
+
+            color: #63b3ed;
+
+        }
+
+        /* Hero Section */
+
+        .hero {
+
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.8)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1920&q=80') center/cover;
+
+            color: white;
+
+            padding: 100px 20px;
+
+            text-align: center;
+
+        }
+
+        .hero h1 {
+
+            color: white;
+
+            font-size: 3.5rem;
+
+            margin-bottom: 20px;
+
+        }
+
+        .hero p {
+
+            font-size: 1.2rem;
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+            color: #e2e8f0;
+
+        }
+
+        /* Main Container */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 40px 20px;
+
+        }
+
+        /* Split Sections (Text + Image) */
+
+        .split-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 40px;
+
+            margin-bottom: 80px;
+
+        }
+
+        .split-section:nth-child(even) {
+
+            flex-direction: row-reverse;
+
+        }
+
+        .split-text {
+
+            flex: 1;
+
+        }
+
+        .split-image {
+
+            flex: 1;
+
+        }
+
+        .split-image img {
+
+            width: 100%;
+
+            border-radius: 12px;
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+        }
+
+        /* Timeline / Lists */
+
+        .timeline-item {
+
+            background: white;
+
+            padding: 20px;
+
+            border-left: 4px solid #3182ce;
+
+            margin-bottom: 20px;
+
+            border-radius: 0 8px 8px 0;
+
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+        }
+
+        .timeline-item h3 {
+
+            margin-top: 0;
+
+            color: #2b6cb0;
+
+        }
+
+        /* Grid Layouts for Scope and Future */
+
+        .grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 25px;
+
+            margin-top: 30px;
+
+        }
+
+        .card {
+
+            background: white;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+
+            transition: transform 0.3s;
+
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+
+        }
+
+        .card img {
+
+            width: 100%;
+
+            height: 200px;
+
+            object-fit: cover;
+
+        }
+
+        .card-content {
+
+            padding: 20px;
+
+        }
+
+        .card-content h3 {
+
+            margin-top: 0;
+
+        }
+
+        /* Highlight box */
+
+        .highlight {
+
+            background-color: #ebf8ff;
+
+            border-left: 5px solid #3182ce;
+
+            padding: 20px;
+
+            margin: 30px 0;
+
+            border-radius: 0 8px 8px 0;
+
+        }
+
+        /* Footer */
+
+        footer {
+
+            background-color: #1a202c;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 40px 20px;
+
+            margin-top: 50px;
+
+        }
+
+        /* Responsive Design */
+
+        @media (max-width: 768px) {
+
+            .split-section, .split-section:nth-child(even) {
+
+                flex-direction: column;
+
+            }
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+            }
+
+            .hero h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <h2>Basic Biochemistry 1</h2>
+
+        <ul>
+
+            <li><a href="index.html">Study Hub</a></li>
+
+            <li><a href="#intro">Introduction</a></li>
+
+            <li><a href="#history">History</a></li>
+
+            <li><a href="#scope">Scope</a></li>
+
+            <li><a href="#biotech">Biotechnology</a></li>
+
+            <li><a href="#future">Future</a></li>
+
+        </ul>
+
+    </nav>
+
+    <header class="hero">
+
+        <h1>Biochemistry & Its Scope</h1>
+
+        <p>University Level – Basic Biochemistry I. Exploring the molecular foundations of life, from ancient fermentation to modern gene editing.</p>
+
+    </header>
+
+    <div class="container">
+
+        
+
+        <!-- Section 1: Introduction -->
+
+        <section id="intro" class="split-section">
+
+            <div class="split-text">
+
+                <h2>1. What is Biochemistry?</h2>
+
+                <p>Biochemistry is the branch of science that studies the chemical processes within and related to living organisms. It acts as a crucial bridge between <strong>Biology</strong> (the study of life) and <strong>Chemistry</strong> (the study of molecules and reactions).</p>
+
+                <p>At its core, biochemistry explains life in terms of molecules such as proteins, nucleic acids, carbohydrates, and lipids, and the reactions that control them.</p>
+
+                <div class="highlight">
+
+                    <strong>Note:</strong> Modern biochemistry is not just descriptive—it is mechanistic and quantitative, aiming to understand how molecular interactions create life functions like metabolism, heredity, and cellular signaling.
+
+                </div>
+
+            </div>
+
+            <div class="split-image">
+
+                <img src="https://images.unsplash.com/photo-1614935151651-0bea6508ab6b?auto=format&fit=crop&w=800&q=80" alt="DNA Double Helix">
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <!-- Section 2: Historical Development -->
+
+        <section id="history" style="margin: 80px 0;">
+
+            <h2>2. Historical Development of Biochemistry</h2>
+
+            <p>The development of biochemistry can be understood through distinct phases of human discovery:</p>
+
+            
+
+            <div class="timeline-item">
+
+                <h3>(a) Early Foundations (Ancient to 18th Century)</h3>
+
+                <ul>
+
+                    <li>Early humans used fermentation (bread, wine, yogurt) without understanding the underlying chemistry.</li>
+
+                    <li>Hippocrates and Galen made early observations about body fluids and metabolism, though not molecular in nature.</li>
+
+                    <li>Chemistry and medicine were still largely separate disciplines.</li>
+
+                </ul>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <h3>(b) Birth of Scientific Chemistry (18th–19th Century)</h3>
+
+                <ul>
+
+                    <li>Antoine Lavoisier demonstrated that respiration is a form of combustion.</li>
+
+                    <li>Discovery of enzymes and fermentation began to reshape biology.</li>
+
+                    <li>Friedrich Wöhler (1828) synthesized urea from inorganic compounds, disproving the “vital force theory”. This was a turning point: organic compounds could be made from inorganic sources.</li>
+
+                </ul>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <h3>(c) Emergence of Classical Biochemistry (Late 19th–Early 20th Century)</h3>
+
+                <ul>
+
+                    <li>Systematic study of proteins, carbohydrates, and fats began.</li>
+
+                    <li>Enzymes were identified as biological catalysts.</li>
+
+                    <li>Eduard Buchner (1897) discovered cell-free fermentation, proving enzymes work outside living cells.</li>
+
+                    <li>Metabolic pathways started being mapped (glycolysis, Krebs cycle).</li>
+
+                </ul>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <h3>(d) Molecular Biology Revolution (20th Century)</h3>
+
+                <ul>
+
+                    <li>Discovery of DNA structure by Watson & Crick (1953).</li>
+
+                    <li>Establishment of the Central Dogma: <strong>DNA → RNA → Protein</strong>.</li>
+
+                    <li>Development of analytical techniques like Electrophoresis, Chromatography, and X-ray crystallography.</li>
+
+                </ul>
+
+            </div>
+
+            <div class="timeline-item">
+
+                <h3>(e) Modern Biochemistry (21st Century)</h3>
+
+                <ul>
+
+                    <li>Integration with genetics, cell biology, and computational biology.</li>
+
+                    <li>Study at the systems level (systems biology).</li>
+
+                    <li>Heavy focus on molecular medicine and biotechnology.</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <!-- Section 3: Scope of Biochemistry -->
+
+        <section id="scope" style="margin: 80px 0;">
+
+            <h2>3. The Vast Scope of Biochemistry</h2>
+
+            <p>Biochemistry is extremely broad and impacts nearly all areas of the life sciences. Here is how it applies to various fields:</p>
+
+            
+
+            <div class="grid">
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=600&q=80" alt="Medical Sciences">
+
+                    <div class="card-content">
+
+                        <h3>Medical Sciences</h3>
+
+                        <ul>
+
+                            <li>Disease diagnosis (diabetes, cancer, genetic disorders)</li>
+
+                            <li>Drug development and pharmacology</li>
+
+                            <li>Understanding metabolic disorders</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1499529112087-3cb3b73cec95?auto=format&fit=crop&w=600&q=80" alt="Agricultural Sciences">
+
+                    <div class="card-content">
+
+                        <h3>Agricultural Sciences</h3>
+
+                        <ul>
+
+                            <li>Genetic modification of crops</li>
+
+                            <li>Fertilizer efficiency</li>
+
+                            <li>Pest resistance development</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=600&q=80" alt="Industrial Applications">
+
+                    <div class="card-content">
+
+                        <h3>Industrial Applications</h3>
+
+                        <ul>
+
+                            <li>Enzyme-based industries (detergents, food processing)</li>
+
+                            <li>Fermentation technology (alcohol, antibiotics)</li>
+
+                            <li>Biofuels production</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=600&q=80" alt="Nutrition and Health">
+
+                    <div class="card-content">
+
+                        <h3>Nutrition & Health</h3>
+
+                        <ul>
+
+                            <li>Understanding vitamins, minerals, and metabolism</li>
+
+                            <li>Clinical nutrition and diet planning</li>
+
+                            <li>Obesity and metabolic syndrome research</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <!-- Section 4: Biotechnology -->
+
+        <section id="biotech" class="split-section">
+
+            <div class="split-image">
+
+                <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=800&q=80" alt="Modern Biotechnology">
+
+            </div>
+
+            <div class="split-text">
+
+                <h2>4. Modern Biotechnology & Its Relation</h2>
+
+                <p>Biotechnology is the practical application of biochemistry and molecular biology to develop useful products and technologies. Key areas include:</p>
+
+                <ul>
+
+                    <li><strong>Genetic Engineering:</strong> DNA manipulation and gene transfer for the production of insulin, growth hormones, and vaccines.</li>
+
+                    <li><strong>Recombinant DNA Technology:</strong> Combining DNA from different organisms, used extensively in pharmaceuticals and agriculture.</li>
+
+                    <li><strong>CRISPR and Gene Editing:</strong> Precise editing of genetic material offering potential cures for genetic diseases.</li>
+
+                    <li><strong>Industrial Biotechnology:</strong> Large-scale enzyme production, bio-based plastics, and fuels.</li>
+
+                    <li><strong>Medical Biotechnology:</strong> Cancer therapy, personalized medicine, and stem cell research.</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <hr>
+
+        <!-- Section 5: Future Prospects -->
+
+        <section id="future" style="margin: 80px 0;">
+
+            <h2>5. Future Prospects of Biochemistry</h2>
+
+            <p>The future of biochemistry is highly promising and deeply integrated with emerging technologies.</p>
+
+            
+
+            <div class="grid">
+
+                <div class="card">
+
+                    <div class="card-content">
+
+                        <h3>🧬 Personalized Medicine</h3>
+
+                        <p>Treatment based on individual genetic profiles, leading to more effective therapies with fewer side effects.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-content">
+
+                        <h3>🔬 Synthetic Biology</h3>
+
+                        <p>Designing artificial biological systems and creating organisms with entirely new functions.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-content">
+
+                        <h3>🤖 AI in Biochemistry</h3>
+
+                        <p>Accelerating drug discovery using AI models and achieving breakthroughs in protein structure prediction (e.g., AlphaFold).</p>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-content">
+
+                        <h3>🌱 Sustainable Biotech</h3>
+
+                        <p>Developing biofuels to replace fossil fuels and creating eco-friendly industrial processes for a greener planet.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Footer / Conclusion -->
+
+    <footer>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+
+            <h2>Conclusion</h2>
+
+            <p>Biochemistry has evolved from simple observations of life processes to a highly advanced molecular science that explains life at the atomic level.</p>
+
+            <p>Its scope continues to expand, especially through biotechnology, genetics, and computational biology, making it one of the most important sciences for the future of medicine, agriculture, industry, environment, and human health. In the coming decades, biochemistry will likely become the central science connecting biology, chemistry, and data science to solve global problems.</p>
+
+            <p style="margin-top: 30px; font-size: 0.9rem; color: #a0aec0;">&copy; 2026 Basic Biochemistry 1 Lecture Notes. Designed for University Level Study.</p>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+
